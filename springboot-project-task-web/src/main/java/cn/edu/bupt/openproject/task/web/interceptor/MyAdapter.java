@@ -1,20 +1,23 @@
 package cn.edu.bupt.openproject.task.web.interceptor;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 配置首页(在SpringBoot2.0及Spring 5.0 WebMvcConfigurerAdapter以被废弃 
- * 建议实现WebMvcConfigurer接口)
- * 创建者 小柒2012
- * 创建时间  2018年4月10日
+ * <p>Title: MyAdapter</p>
+ * <p>Description: 配置首页 </p>
+ * <p>Company: bupt.edu.cn</p>
+ * <p>Created: 2018-06-08 10:20</p>
+ * @author ChengTengfei
+ * @version 1.0
  */
 @Configuration
-public class MyAdapter implements WebMvcConfigurer{
+public class MyAdapter implements WebMvcConfigurer {
     @Override
     public void addViewControllers( ViewControllerRegistry registry ) {
         registry.addViewController( "/" ).setViewName( "forward:/login.shtml" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
-    } 
+    }
 }

@@ -17,8 +17,7 @@ public class JobServiceImpl implements IJobService {
 	private DynamicQuery dynamicQuery;
 
 	@Override
-	public List<QuartzEntity> listQuartzEntity(QuartzEntity quartz,
-											   Integer pageNo, Integer pageSize) {
+	public List<QuartzEntity> listQuartzEntity(QuartzEntity quartz, Integer pageNo, Integer pageSize) {
 		StringBuffer nativeSql = new StringBuffer();
 		nativeSql.append("SELECT job.JOB_NAME as jobName,job.JOB_GROUP as jobGroup,job.DESCRIPTION as description,job.JOB_CLASS_NAME as jobClassName,");
 		nativeSql.append("cron.CRON_EXPRESSION as cronExpression,tri.TRIGGER_NAME as triggerName,tri.TRIGGER_STATE as triggerState,");
@@ -27,7 +26,8 @@ public class JobServiceImpl implements IJobService {
 		nativeSql.append("LEFT JOIN qrtz_cron_triggers AS cron ON cron.TRIGGER_NAME = tri.TRIGGER_NAME ");
 		nativeSql.append("WHERE tri.TRIGGER_TYPE = 'CRON'");
 		Object[] params = new  Object[]{};
-		if(!StringUtils.isEmpty(quartz.getJobName())){//加入JobName搜索其他条件自行实现
+		//加入JobName搜索其他条件自行实现
+		if(!StringUtils.isEmpty(quartz.getJobName())){
 			nativeSql.append(" AND job.JOB_NAME = ?");
 			params = new Object[]{quartz.getJobName()};
 		}

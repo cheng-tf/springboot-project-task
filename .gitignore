@@ -1,0 +1,16 @@
+*.class
+*.settings
+*.jar
+*.war
+*.ear
+/target/
+/.settings/
+*.project
+*.classpath
+*.iml
+*idea/
+*apiclient_cert.p12
+springboot-*/.settings
+springboot-*/target/
+springboot-*/bin/
+springboot-*/*.iml
