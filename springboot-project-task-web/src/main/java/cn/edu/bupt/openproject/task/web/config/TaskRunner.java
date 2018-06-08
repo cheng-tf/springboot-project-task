@@ -43,7 +43,7 @@ public class TaskRunner implements ApplicationRunner {
             quartz.setCronExpression("0/20 * * * * ?");
             Class cls = Class.forName(quartz.getJobClassName()) ;
             cls.newInstance();
-            // 任务类
+            // 定时任务
             JobDetail job = JobBuilder.newJob(cls)
                     .withIdentity(quartz.getJobName(), quartz.getJobGroup())
                     .withDescription(quartz.getDescription())
@@ -51,13 +51,11 @@ public class TaskRunner implements ApplicationRunner {
             job.getJobDataMap().put("itstyle", "科帮网欢迎你");
             job.getJobDataMap().put("blog", "https://blog.52itstyle.com");
             job.getJobDataMap().put("data", new String[]{"张三","李四"});
-            // 触发时间点
-            CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(quartz.getCronExpression());
-            // 触发器
+            // 定时任务触发器
             Trigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("trigger"+quartz.getJobName(), quartz.getJobGroup())
                     .startNow()
-                    .withSchedule(cronScheduleBuilder)
+                    .withSchedule(CronScheduleBuilder.cronSchedule(quartz.getCronExpression()))
                     .build();
             // 调度
             scheduler.scheduleJob(job, trigger);

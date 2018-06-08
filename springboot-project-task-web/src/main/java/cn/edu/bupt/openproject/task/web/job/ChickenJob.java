@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * <p>Title: ChickenJob</p>
- * <p>Description: </p>
+ * <p>Description: 定时任务 </p>
  * <p>Company: bupt.edu.cn</p>
  * <p>Created: 2018-06-08 10:21</p>
  * @author ChengTengfei
@@ -26,6 +26,7 @@ public class ChickenJob implements  Job,Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    // 实际业务
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         logger.info("大吉大利、今晚吃鸡-01-测试集群模式");
